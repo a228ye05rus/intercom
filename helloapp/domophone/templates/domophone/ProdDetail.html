@@ -1,0 +1,89 @@
+{% load static %}
+<head>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>Buzzed</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="{% static 'domophone/css/bootstrap.min.css' %}">
+  <!-- style css -->
+  <link rel="stylesheet" href="{% static 'domophone/css/style.css' %}">
+  <!-- Responsive-->
+  <link rel="stylesheet" href="{% static 'domophone/css/responsive.css' %}">
+  <!-- fevicon -->
+  <link rel="icon" href="{% static 'domophone/images/fevicon.png' %}" type="image/gif" />
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="{% static 'domophone/css/jquery.mCustomScrollbar.min.css' %}">
+  <!-- Tweaks for older IEs-->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <!-- owl stylesheets -->
+  <link rel="stylesheet" href="{% static 'domophone/css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'domophone/css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+{% include "domophone/header.html" %}
+
+{% include "domophone/header_2.html" %}
+
+<div class="about_section layout_padding">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="unique_text">{{ prod.name }}</p>
+      <h1 class="years_text">{{ prod.short_desc }}</h1>
+      <p class="ipsum_text">{{ prod.full_desc }}</p>
+      <div class="read_more_bt"><a href="{% url 'index' %}" class="btn btn-warning">Вернуться</a></div>
+    </div>
+    <div class="col-md-6">
+      <div class="image_2"><img style="height:250px; width:500px" src="{{ prod.picture.url }}"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% include "domophone/footer.html" %}
+
+{% include "domophone/copyright.html" %}
+<script src="{% static 'domophone/js/jquery.min.js' %}"></script>
+<script src="{% static 'domophone/js/popper.min.js' %}"></script>
+<script src="{% static 'domophone/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'domophone/js/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'domophone/js/plugin.js' %}"></script>
+<!-- sidebar -->
+<script src="{% static 'domophone/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'domophone/js/custom.js' %}"></script>
+<!-- javascript -->
+<script src="{% static 'domophone/js/owl.carousel.js' %}"></script>
+<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<script>
+ $('#myCarousel').carousel({
+        interval: false
+    });
+
+    //scroll slides on swipe for touch enabled devices
+
+    $("#myCarousel").on("touchstart", function(event){
+
+        var yClick = event.originalEvent.touches[0].pageY;
+        $(this).one("touchmove", function(event){
+
+            var yMove = event.originalEvent.touches[0].pageY;
+            if( Math.floor(yClick - yMove) > 1 ){
+                $(".carousel").carousel('next');
+            }
+            else if( Math.floor(yClick - yMove) < -1 ){
+                $(".carousel").carousel('prev');
+            }
+        });
+        $(".carousel").on("touchend", function(){
+            $(this).off("touchmove");
+        });
+    });
+</script>
